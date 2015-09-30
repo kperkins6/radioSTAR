@@ -39,9 +39,22 @@ Want to work with us?
     <pre>brew install caskroom/cask/brew-cask</pre>
 
 3.Let's Get Python!
-  * We can start by...
+  * We can start by simply typing the following into a terminal:
+    <pre>brew install python</pre>
+  * "Homebrew installs Setuptools and pip for you. Setuptools enables you to download and install any compliant Python software over a network with a single command (easy_install). It also enables you to add this network installation capability to your own Python software with very little work. pip is a tool for easily installing and managing Python packages, that is recommended over easy_install. It is superior to easy_install in several ways, and is actively maintained."[2]
+  * *If you want* to ensure you have pip and python, fully quit out of the terminal application.  Open up a new terminal and type:
+   <pre>which python</pre> 
+   and
+   <pre>which pip</pre>
+  * Congratulations, you now have Python!  
 
 ####Windows Installation
+1. Downloading Python from the source
+  * Though I'd rather have you do everything via the Command Line, we will be going through various webpages to grab our downloads. 
+  * The first place we can go is Python's website.  Head to this link to grab the Windows MSI Installer:
+    <pre>https://www.python.org/downloads/</pre>
+  * Follow the installer's instructions on-screen
+
 
 ##Installing Django
 
