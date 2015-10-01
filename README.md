@@ -83,7 +83,11 @@ Want to work with us?
   * If you do not, install them now.  You can follow the guide above.
 
 ####Mac OS X Installation
-  * Coming Soon
+1. Using PIP, we will install Django
+  * To Install Django, all we need to do is open a command prompt and type:
+    <pre>pip install django</pre>
+  * When finished, you can type:
+    <pre>django-admin --version</pre>
 
 ####Windows Installation
 1. Using PIP, we will install Django
@@ -132,3 +136,4 @@ Rules to live by: [15 Code Necessities](http://code.tutsplus.com/tutorials/top-1
 2. Python Install : http://docs.python-guide.org/en/latest/starting/install/osx/
 3. Django Install Windows: https://docs.djangoproject.com/en/1.8/howto/windows/
 4. Cask by Homebrew : http://caskroom.io/
+5. Easy Tutorials/Django-Install : https://github.com/EasyTutorials/Django-Install
