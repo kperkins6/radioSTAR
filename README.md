@@ -80,13 +80,33 @@ Want to work with us?
 ##Installing Django
 ####Before We Begin
   * Make sure you have Python, Setuptools, and PIP.
-  * If you do not, install them now.  You can follow the guide above.  
+  * If you do not, install them now.  You can follow the guide above.
 
 ####Mac OS X Installation
   * Coming Soon
 
 ####Windows Installation
-  * Coming Soon
+1. Using PIP, we will install Django
+  * Thankfully, all of the previous steps had the hard work.
+  * To Install Django, all we need to do is open a command prompt and type:
+    <pre>pip install django</pre>
+  * When finished, you can type:
+    <pre>django-admin --version</pre>
+  * Once you get Django up and running, if the help text is displayed endlessly, you can try this solution:
+    > If django-admin only displays the help text no matter what arguments
+    > it is given, there is probably a problem with the file association in
+    > Windows. Check if there is more than one environment variable set for 
+    > running Python scripts in **PATH**. This usually occurs when there is more
+    > than one Python version installed.
+    
+  * If using a proxy and hitting issues, here is a fix direct from Django's Guide:  
+    > If you are connecting to the internet behind a proxy, there might be problem in
+    > running the commands **easy_install pip** and **pip install django**. Set the environment 
+    > variables for proxy configuration in the command prompt as follows:
+    > <pre>set http_proxy=http://username:password@proxyserver:proxyport
+    set https_proxy=https://username:password@proxyserver:proxyport</pre>
+
+2. You're finished!
 
 ##Starting up Django
 ####Before We Begin
