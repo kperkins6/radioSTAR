@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 
-class DJ_Account(models.Model):
+class DJ_Profile(models.Model):
 	
 	# DJ information (editable by DJ).
 	name = models.CharField(max_length=64)
