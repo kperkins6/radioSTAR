@@ -14,15 +14,21 @@ Want to work with us?
   1. Introduce Yourself
   2. See the steps below to get yourself ready to contribute!
 
-##Installing Python
-####Before We Begin
+##Before We Begin
   * We will be covering the installation of the following:
     - Python
     - Setuptools 
     - PIP
+    - Django
   * The following will cover an Installation for OS X and Windows.  Linux to come soon.  
 
-####Mac OS X Installation
+####Please Select Your Operating system below:
+  * [Mac OS X](#macInstall)  
+  * [Linux](#linuxInstall)  ( Coming Soon )
+  * [Windows](#windowsInstall)  
+
+##Mac OS X Installation <a name="macInstall"></a>
+####Installing Python
 1. Make sure **Xcode Command Line Tools** are installed  
   **Option 1** (takes up less space)  
     * Open a terminal window  
@@ -55,7 +61,28 @@ Want to work with us?
    <pre>which pip</pre>
   * Congratulations, you now have Python!  
 
-####Windows Installation
+####Installing Django
+#####Before We Begin
+  * Make sure you have Python, Setuptools, and PIP.
+  * If you do not, install them now.  You can follow the guide above.  
+
+1. Using PIP, we will install Django
+  * To Install Django, all we need to do is open a command prompt and type:
+    <pre>pip install django</pre>
+  * When finished, you can type:
+    <pre>django-admin --version</pre>
+
+##Starting up Django
+####Before We Begin
+  * Coming Soon
+  
+
+######End of Mac Installation
+
+
+
+##Windows Installation <a name="windowsInstall"></a>
+####Installing Python
 1. Downloading Python from the source
   * The first place we can go is Python's website.  Head to this link to grab the Windows MSI Installer:
     <pre>https://www.python.org/downloads/</pre>
@@ -77,19 +104,11 @@ Want to work with us?
   * If that didn't help, head to [this install guide](https://pip.pypa.io/en/latest/installing/) for pip
 4. You now have all the Python tools you need to get started!
 
-##Installing Django
-####Before We Begin
+####Installing Django
+#####Before We Begin
   * Make sure you have Python, Setuptools, and PIP.
-  * If you do not, install them now.  You can follow the guide above.
+  * If you do not, install them now.  You can follow the guide above.  
 
-####Mac OS X Installation
-1. Using PIP, we will install Django
-  * To Install Django, all we need to do is open a command prompt and type:
-    <pre>pip install django</pre>
-  * When finished, you can type:
-    <pre>django-admin --version</pre>
-
-####Windows Installation
 1. Using PIP, we will install Django
   * Thankfully, all of the previous steps had the hard work.
   * To Install Django, all we need to do is open a command prompt and type:
@@ -116,12 +135,21 @@ Want to work with us?
 ####Before We Begin
   * Coming Soon
 
-####Mac OS X
+######End of Windows Installation
+
+
+##Linux Installation <a name="linuxInstall"></a>
+####Installing Python
   * Coming Soon
 
-####Windows
+####Installing Django
   * Coming Soon
 
+####Starting up Django
+#####Before We Begin
+  * Coming Soon
+
+######End of Linux Installation
 
 
 ##Coding Practices
