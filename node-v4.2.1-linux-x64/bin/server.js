@@ -7,6 +7,19 @@ app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/index.html');
 });
 
+app.get('/index.html', function(req, res) {
+	res.sendFile(__dirname + '/index.html');
+});
+app.get('/login.html', function(req, res) {
+	res.sendFile(__dirname + '/login.html');
+});
+app.get('/logout.html', function(req, res) {
+	res.sendFile(__dirname + '/logout.html');
+	res.sendFile(__dirname + '/logoutSuccess.html')
+});
+
+
+
 io.on('connection', function(socket) {
 	listeners += 1;
 	console.log('Connection!');
