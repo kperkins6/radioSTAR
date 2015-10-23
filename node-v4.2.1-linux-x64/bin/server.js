@@ -12,17 +12,6 @@ var	app = require('express')(),
 		databaseName = 'radioSTAR.db';
 
 /*
-** Query(...) takes a database and a string as
-**   parameters and queries the given database.
-*/
-	
-function Query(Database, Command) {
-	Database.serialize(function() {
-		Database.run(Command);	
-	});
-};
-
-/*
 ** The following if-else checks if a database
 **   exits, and either opens it or opens it and
 **   creates an initial table.
@@ -35,6 +24,17 @@ if (filesystem.existsSync(databaseName)) {
 
 	Query(database, 'CREATE TABLE Accounts (name TEXT);');
 }
+
+/*
+** Query(...) takes a database and a string as
+**   parameters and queries the given database.
+*/
+	
+function Query(Database, Command) {
+	Database.serialize(function() {
+		Database.run(Command);	
+	});
+};
 
 /*
 ** Client is a container class to hold socket
