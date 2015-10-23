@@ -1,4 +1,4 @@
-# radioSTAR
+#Radio STAR
 **_Radio Statistical Tracking and Automated Review_** is an accountability program for radio stations and their DJs.  radioStar is a web application that builds profiles for each DJ at a specific Radio Station, giving them a compliance rating, artist metrics, listener counts, and general feedback about the status of their show. When a DJ is out of compliance, it will affect their compliance rating and an e-mail will be automatically sent to the appropriate manager(s) at a station to notify them of the compliance breach. We will be creating AI to do all of these actions efficiently in real time.
 
 
@@ -14,6 +14,16 @@ Want to work with us? Introduce Yourself!
 
 ##Node.js Setup
 Basic Node.js installation setup here: [Easy Tutorials](https://github.com/EasyTutorials/Node.js-Install)  
+
+##Node.js Packages to install
+For this project to work locally, Install the following after completing the above tutorial:
+<pre>
+npm install express
+npm install socket.io
+npm install request
+npm install querystring
+</pre>
+
 
 ##Coding Practices
 Rules to live by: [15 Code Necessities](http://code.tutsplus.com/tutorials/top-15-best-practices-for-writing-super-readable-code--net-8118)
