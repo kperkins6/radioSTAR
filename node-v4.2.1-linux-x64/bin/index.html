@@ -56,10 +56,10 @@
     <!-- <div id="header"></div> -->
 		<script>
 			var socket = io();
-			socket.emit("chat", "interesting");
-			socket.on('count', function(data) {
+			socket.on('chat', function(data) {
 				console.log(data);
 			});
+			socket.emit('chat', 'hello everyone!');
 		</script>
   <!-- <div id="footer"></div> -->
 	</body>

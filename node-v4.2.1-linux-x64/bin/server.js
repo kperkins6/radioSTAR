@@ -4,7 +4,7 @@ var	app = require('express')(),
 		sqlite3 = require('sqlite3'),
 		filesystem = require('fs'),
 
-		listenerCount = 0,
+		djCount = 0,
 		port = 32768,
 		sockets = [],
 		date = new Date(),
@@ -35,18 +35,6 @@ function Query(Database, Command) {
 		Database.run(Command);	
 	});
 };
-
-/*
-** Client is a container class to hold socket
-**   data about connections, their lifespan,
-**   and other data that will be relevant for
-**   listener statistics.
-*/
-
-function Client(Socket, Age) {
-	socket = Socket;
-	age = Age;
-}
 
 /*
 ** app.get(...) is the function that responds to
@@ -80,13 +68,24 @@ app.get('/logout.html', function(req, res) {
 
 io.on('connection', function(socket) {
 	console.log('Connection!');
-	sockets.push(new Client(socket, date.getTime()));	
-	listenerCount += 1;
+
+	socket.username = "temp";
+	socket.password = "";
+	socket.age = date.getTime();
+	sockets.push(socket);	
+
+	djCount += 1;
+
 	
 	socket.on('login', function(data) {
 		var data = data.stringify();
 		console.log(data);
 	});
+	
+	socket.on('chat', function(data) {
+		//broadcast to all OTHER sockets
+		socket.broadcast.emit('chat', this.username + " said: " + data);
+	});	
 
 	socket.on('disconnect', function() {
 		for (var i = 0; i < sockets.length; i++) {
@@ -96,7 +95,7 @@ io.on('connection', function(socket) {
 			}	
 		}
 		console.log('Disconnection!');
-		listenerCount -= 1;
+		djCount -= 1;
 	});
 });
 
