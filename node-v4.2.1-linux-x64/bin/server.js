@@ -1,15 +1,51 @@
-var	app = require('express')(),
-		http = require('http').Server(app),
-		io = require('socket.io')(http),
-		sqlite3 = require('sqlite3'),
-		filesystem = require('fs'),
+/////////////////////////////////
+// BEGIN VARIABLE DECLARATIONS //
 
-		djCount = 0,
-		port = 32768,
-		sockets = [],
-		date = new Date(),
-		database,
-		databaseName = 'radioSTAR.db';
+	var express  			= require('express');
+	var app      			= express();
+	var http 					= require('http').Server(app);
+	var port    			= process.env.PORT || 32768;
+	//var mongoose 			= require('mongoose');
+	var passport 			= require('passport');
+	var flash    			= require('connect-flash');
+	var io 						= require('socket.io')(http);
+	var sqlite3 			= require('sqlite3');
+	var filesystem 		= require('fs');
+
+
+	var morgan       	= require('morgan');
+	var cookieParser 	= require('cookie-parser');
+	var bodyParser   	= require('body-parser');
+	var session      	= require('express-session');
+
+
+	var djCount			 	= 0;
+	var port 				 	= 32768;
+	var sockets 		 	= [];
+	var date 					= new Date();
+	var databaseName 	= 'radioSTAR.db';
+	var database;
+
+// END VARIABLE DECLARATIONS //
+///////////////////////////////
+
+////////////////////////////////
+// EXPRESS APPLICATION SET-UP //
+
+	// Log every request to server console
+	app.use(morgan('dev'));
+
+	// Read cookies for authentication methods
+	app.use(cookieParser());
+
+	// Get information from html forms
+	app.use(bodyParser());
+
+//END EXPRESS APPLICATION SET-UP//
+/////////////////////////////////
+
+app.set('view engine', 'ejs'); // set up ejs for templating
+
 
 /*
 ** The following if-else checks if a database
@@ -29,10 +65,10 @@ if (filesystem.existsSync(databaseName)) {
 ** Query(...) takes a database and a string as
 **   parameters and queries the given database.
 */
-	
+
 function Query(Database, Command) {
 	Database.serialize(function() {
-		Database.run(Command);	
+		Database.run(Command);
 	});
 };
 
@@ -42,23 +78,26 @@ function Query(Database, Command) {
 **   as a webserver.
 */
 
+
 app.get('/', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+	res.render(__dirname + '/views/index.ejs');
 });
 
-app.get('/index.html', function(req, res) {
-	res.sendFile(__dirname + '/index.html');
+app.get('/index.ejs', function(req, res) {
+	res.render(__dirname + '/views/index.ejs');
 });
 
-app.get('/login.html', function(req, res) {
-	res.sendFile(__dirname + '/login.html');
+app.get('/login.ejs', function(req, res) {
+	res.render(__dirname + '/views/login.ejs');
 });
 
-app.get('/logout.html', function(req, res) {
-	res.sendFile(__dirname + '/logout.html');
-	res.sendFile(__dirname + '/logoutSuccess.html');
+app.get('/logout.ejs', function(req, res) {
+	res.render(__dirname + '/views/logout.ejs');
 });
 
+app.get('/logoutSuccess', function(req, res){
+	res.render(__dirname + 'views/logoutSuccess.ejs');
+});
 /*
 ** io.on(...) is the primary function / driver of
 **   the application. This function checks for attempted
@@ -72,27 +111,27 @@ io.on('connection', function(socket) {
 	socket.username = "temp";
 	socket.password = "";
 	socket.age = date.getTime();
-	sockets.push(socket);	
+	sockets.push(socket);
 
 	djCount += 1;
 
-	
+
 	socket.on('login', function(data) {
 		var data = data.stringify();
 		console.log(data);
 	});
-	
+
 	socket.on('chat', function(data) {
 		//broadcast to all OTHER sockets
 		socket.broadcast.emit('chat', this.username + " said: " + data);
-	});	
+	});
 
 	socket.on('disconnect', function() {
 		for (var i = 0; i < sockets.length; i++) {
 			if (sockets[i].socket === this) {
 				sockets.splice(i, 1);
 				i = sockets.size();
-			}	
+			}
 		}
 		console.log('Disconnection!');
 		djCount -= 1;
