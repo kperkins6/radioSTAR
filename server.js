@@ -10,7 +10,6 @@
 	var flash    			= require('connect-flash');
 	var io 						= require('socket.io')(http);
 	var sqlite3 			= require('sqlite3');
-	var filesystem 		= require('fs');
 
 
 	var morgan       	= require('morgan');
@@ -23,8 +22,7 @@
 	var port 				 	= 32768;
 	var sockets 		 	= [];
 	var date 					= new Date();
-	var databaseName 	= 'radioSTAR.db';
-	var database;
+	var database = new sqlite3.Database(databaseName);
 
 // END VARIABLE DECLARATIONS //
 ///////////////////////////////
@@ -45,21 +43,6 @@
 /////////////////////////////////
 
 app.set('view engine', 'ejs'); // set up ejs for templating
-
-
-/*
-** The following if-else checks if a database
-**   exits, and either opens it or opens it and
-**   creates an initial table.
-*/
-
-if (filesystem.existsSync(databaseName)) {
-	database = new sqlite3.Database(databaseName);
-} else {
-	database = new sqlite3.Database(databaseName);
-
-	Query(database, 'CREATE TABLE Accounts (name TEXT);');
-}
 
 /*
 ** Query(...) takes a database and a string as
