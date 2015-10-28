@@ -22,7 +22,7 @@
 	var port 				 	= 32768;
 	var sockets 		 	= [];
 	var date 					= new Date();
-	var database = new sqlite3.Database(databaseName);
+	var database = new sqlite3.Database("radioSTAR.db");
 
 // END VARIABLE DECLARATIONS //
 ///////////////////////////////
