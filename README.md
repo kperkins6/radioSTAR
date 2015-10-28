@@ -31,5 +31,10 @@ npm install querystring
 Rules to live by: [15 Code Necessities](http://code.tutsplus.com/tutorials/top-15-best-practices-for-writing-super-readable-code--net-8118)
 
 
+##Soon to come:
+- Testing content
+- Code coverage
+- README links
+
 ##### Current Dev. Team (A-Z):
 *Annika, Chad, Jay, Jesse, Kevin, Matt*
