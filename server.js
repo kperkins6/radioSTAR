@@ -100,13 +100,12 @@ io.on('connection', function(socket) {
 
 
 	socket.on('login', function(data) {
-		var data = data.stringify();
 		console.log(data);
 	});
 
 	socket.on('chat', function(data) {
 		//broadcast to all OTHER sockets
-		socket.broadcast.emit('chat', this.username + " said: " + data);
+		socket.broadcast.emit('chat', this.username + ": " + data);
 	});
 
 	socket.on('disconnect', function() {
