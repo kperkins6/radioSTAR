@@ -61,10 +61,10 @@
 	});
 
 	function SendLogin() {
-		var email = document.getElementById("inputEmail");
-		var password = document.getElementById("inputPassword");
+		var email = document.getElementById("inputEmail").value;
+		var password = document.getElementById("inputPassword").value;
 
-		var loginJSON = '{ "email": ' + email.value + ', "password": ' + password.value + '}';
+		var loginJSON = '{ "email": "' + email + '", "password": "' + password + '"}';
 
 		window.socket.emit("login", loginJSON);
 	}
@@ -83,7 +83,7 @@
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit" action="SendLogin">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
       </form>
   </form>
 </div>

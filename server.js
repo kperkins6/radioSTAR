@@ -16,13 +16,13 @@
 	var cookieParser 	= require('cookie-parser');
 	var bodyParser   	= require('body-parser');
 	var session      	= require('express-session');
-
+	var filesystem		= require('fs');
 
 	var djCount			 	= 0;
 	var port 				 	= 32768;
 	var sockets 		 	= [];
 	var date 					= new Date();
-	var database 			= new sqlite3.Database("radioSTAR.db");
+	var database;
 
 // END VARIABLE DECLARATIONS ///
 ////////////////////////////////
@@ -46,6 +46,16 @@
 	app.use(flash()); // use connect-flash for flash messages stored in session
 	// END PASSPORT SET-UP /////////
 
+	// DATABASE SET-UP /////////////
+	if (filesystem.existsSync('radioSTAR.db')) {
+		database = new sqlite3.Database('radioSTAR.db');
+	} else {
+		database = new sqlite3.Database('radioSTAR.db');
+		Query(database, 'CREATE TABLE Accounts(email TEXT, password TEXT);');		
+	}
+	// END DATABASE SET-UP /////////
+	////////////////////////////////
+
 // END CONFIGURATION SETTINGS ////
 //////////////////////////////////
 
@@ -66,7 +76,13 @@
 */
 function Query(Database, Command) {
 	Database.serialize(function() {
-		Database.run(Command);
+		if (Command.search("SELECT") > -1) {
+			Database.all(Command, function(errorMessage, data) {
+				console.log("Query results: " + data[0].email + ".");
+			});
+		} else {
+			Database.run(Command);
+		}
 	});
 };
 
@@ -89,7 +105,9 @@ io.on('connection', function(socket) {
 
 
 	socket.on('login', function(data) {
-		console.log(data);
+		data = JSON.parse(data);
+		console.log("Login attempt by " + data.email + ".");
+		Query(database, 'SELECT * FROM Accounts WHERE email="' + data.email + '" AND password="' + data.password + '";');
 	});
 
 	socket.on('chat', function(data) {
