@@ -22,65 +22,54 @@
 	var port 				 	= 32768;
 	var sockets 		 	= [];
 	var date 					= new Date();
-	var database = new sqlite3.Database("radioSTAR.db");
+	var database 			= new sqlite3.Database("radioSTAR.db");
 
-// END VARIABLE DECLARATIONS //
-///////////////////////////////
-
+// END VARIABLE DECLARATIONS ///
 ////////////////////////////////
-// EXPRESS APPLICATION SET-UP //
 
-	// Log every request to server console
-	app.use(morgan('dev'));
 
-	// Read cookies for authentication methods
-	app.use(cookieParser());
+//////////////////////////////////
+// CONFIGURATION SETTINGS ////////
 
-	// Get information from html forms
-	app.use(bodyParser());
+	// EXPRESS APPLICATION SET-UP //
+	app.use(morgan('dev'));	  // Log every request to server console
+	app.use(cookieParser()); 	// Read cookies for authentication methods
+	app.use(bodyParser());    // Get information from html forms
+	//END EXPRESS APPLICATION SET-UP//
 
-//END EXPRESS APPLICATION SET-UP//
-/////////////////////////////////
+  app.set('view engine', 'ejs'); // set up ejs for templating
 
-app.set('view engine', 'ejs'); // set up ejs for templating
+	// PASSPORT SET-UP /////////////
+  app.use(session({ secret: 'test1' })); // secret session
+  app.use(passport.initialize());
+	app.use(passport.session()); // persistent login sessions
+	app.use(flash()); // use connect-flash for flash messages stored in session
+	// END PASSPORT SET-UP /////////
 
+// END CONFIGURATION SETTINGS ////
+//////////////////////////////////
+
+
+//////////////////////////////////
+// ROUTES CONFIGURATION //////////
+
+	// load routes and pass in our app and fully configured passport
+	require('./app/routes.js')(app, passport);
+
+// END ROUTES CONFIGURATION //////
+//////////////////////////////////
+
+//
 /*
 ** Query(...) takes a database and a string as
 **   parameters and queries the given database.
 */
-
 function Query(Database, Command) {
 	Database.serialize(function() {
 		Database.run(Command);
 	});
 };
 
-/*
-** app.get(...) is the function that responds to
-**   http requests with a specified file, acting
-**   as a webserver.
-*/
-
-
-app.get('/', function(req, res) {
-	res.render(__dirname + '/views/index.ejs');
-});
-
-app.get('/index.ejs', function(req, res) {
-	res.render(__dirname + '/views/index.ejs');
-});
-
-app.get('/login.ejs', function(req, res) {
-	res.render(__dirname + '/views/login.ejs');
-});
-
-app.get('/logout.ejs', function(req, res) {
-	res.render(__dirname + '/views/logout.ejs');
-});
-
-app.get('/logoutSuccess', function(req, res){
-	res.render(__dirname + 'views/logoutSuccess.ejs');
-});
 /*
 ** io.on(...) is the primary function / driver of
 **   the application. This function checks for attempted
