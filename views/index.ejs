@@ -23,35 +23,26 @@
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
-		  <div class="container-fluid">
-		    <div class="navbar-header">
-		      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		        <span class="icon-bar"></span>
-		      </button>
-		      <a class="navbar-brand" href="/">RadioSTAR</a>
-		    </div>
-		    <div class="collapse navbar-collapse" id="mainMenu">
-		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="/">Home</a></li>
-		        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Log Your Show<span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#">Text Input</a></li> <!--/log/text.html-->
-		            <li><a href="#">Spotify</a></li><!--/log/spotify.html -->
-		            <li><a href="#">Soundcloud</a></li><!--/log/soundcloud.html -->
-		            <li><a href="#">Stream Listener</a></li><!--/log/listen.html -->
-		          </ul>
-		        </li>
-		        <li><a href="#">About</a></li><!--/about.html -->
-		        <li><a href="#">Contact</a></li><!--/contact.htmlno -->
-		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
-		        <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-		      </ul>
-		    </div>
+		<div class="container-fluid">
+		  <div class="navbar-header">
+		    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=    "#myNavbar">
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		      <span class="icon-bar"></span>
+		    </button>
+		    <a class="navbar-brand" href="/">RadioSTAR</a>
 		  </div>
+		  <div class="collapse navbar-collapse" id="mainMenu">
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="/">Home</a></li>
+		      <li><a href="#">About</a></li><!--/about.html -->
+		      <li><a href="#">Contact</a></li><!--/contact.htmlno -->
+		    </ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+				</ul>
+		  </div>
+		</div>
 		</nav>
     <!-- <div id="header"></div> -->
 		<script>
@@ -61,6 +52,13 @@
 			});
 			socket.emit('chat', 'hello everyone!');
 		</script>
+		<div class="jumbotron text-center">
+		 <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+		 <p>Login Below:</p>
+
+		 <a href="/login" class="btn btn-default"><span class="fa fa-user"></span> Local Login</a>
+ </div>
   <!-- <div id="footer"></div> -->
 	</body>
 </html>
