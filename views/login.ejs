@@ -44,11 +44,17 @@
     
 <!-- <div id="header"></div> -->
 <script>
-  window.socket = io();
-  window.socket.on('chat', function(data) {
+  if (typeof window.socket === "undefined") {
+		window.socket = io();
+	}
+ 
+	window.socket.on("chat", function(data) {
 	  console.log(data);
   });
-  window.socket.emit('chat', 'hello everyone!');
+
+	window.socket.on("login", function(data) {
+		localStorage.setItem("variableName", "value");
+	});
 
 	function SendLogin() {
 		var email = document.getElementById("inputEmail");
@@ -56,10 +62,8 @@
 
 		var loginJSON = '{ "email": ' + email.value + ', "password": ' + password.value + '}';
 
-		console.log(email + " " + password);
 		window.socket.emit("login", loginJSON);
 	}
-
 </script>
 <!-- <div id="footer"></div> -->
 
